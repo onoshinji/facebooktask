@@ -16,8 +16,8 @@ class PostsController < ApplicationController
   def edit
   end
   def update
-    if @post.update(blog_params)
-      redirect_to posts_path, notice: "ブログを編集しました！"
+    if @post.update(post_params)
+      redirect_to posts_path, notice: "投稿を編集しました！"
     else
       render :edit
     end
