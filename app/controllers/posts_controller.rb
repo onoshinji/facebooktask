@@ -8,9 +8,16 @@ class PostsController < ApplicationController
   end
 
   def create
-    Post.create(post_params)
-    redirect_to posts_path
     @post = current_user.posts.build(post_params)
+    if params[:back]
+      render :new
+    else
+      if @post.save
+        redirect_to posts_path, notice: "投稿を作成しました"
+      else
+        render :new
+      end
+    end
   end
 
   def edit
