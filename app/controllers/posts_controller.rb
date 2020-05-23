@@ -1,5 +1,8 @@
 class PostsController < ApplicationController
-  
+  # ここから追記
+
+  # before_action :authenticate_user
+  before_action :ensure_correct_user, only:[:edit,:update,:destroy]
   before_action :set_post, only: [:show,:edit,:update,:destroy]
   def index
     @posts = Post.all
@@ -51,4 +54,15 @@ class PostsController < ApplicationController
   def set_post
     @post = Post.find(params[:id])
   end
-end
+
+  def authenticate_user
+    if current_user == nil
+      redirect_to new_session_path
+    end
+  end
+#   def ensure_correct_user
+#     if @current_user.id !=  params[:id].to_i
+#       redirect_to posts_path notice: "あなたが投稿したもの以外は編集、削除できません。"
+#     end
+#   end
+ end
