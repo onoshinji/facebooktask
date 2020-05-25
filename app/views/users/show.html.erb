@@ -1,9 +1,15 @@
 <h2>ユーザー詳細画面</h2>
-
   <p id="notice"><%= notice %></p>
-  <h1><%= @user.name %>のページ</h1>
+  <h2><%= @user.name %>のページ</h2>
   <p>メールアドレス: <%= @user.email %></p>
-  <%= link_to '新しく投稿する', new_post_path %>
-  <%# この行に編集画面へのリンクを追加する必要がある？ %>
-  <br>
-  <%= link_to '投稿一覧', posts_path %>
+  <% @user.posts.each do |post| %>
+    <tr >
+      <td id="user_tr_color">タイトル:<%= post.title %></td>
+      <td>投稿内容:<%= post.content %></td>
+      <td><%= link_to '詳細を確認する', post_path(post.id) %></td>
+      <td><%= link_to "投稿を編集する", edit_post_path(post.id), data: { confirm: '本当に編集していいですか？' } %></td>
+      <td><%= link_to '投稿を削除する', post_path(post.id),data: { confirm: '本当に削除していいですか？' }, method: :delete %></td>
+      <td><%= link_to '新しく投稿する', new_post_path %> <td>
+      <td><%= link_to 'みんなの投稿', posts_path %> </td
+    </tr>
+  <% end %>

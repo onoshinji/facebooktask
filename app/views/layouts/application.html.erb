@@ -1,27 +1,36 @@
 <!DOCTYPE html>
 <html>
+<div class="container-fluid">
   <head>
-    <title>Facetask</title>
+    <title>フェイスブッククローン</title>
     <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width">  <!-- head内にこのタグ設定を追記する -->
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-  <body>
-    <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: "#{key}") %>
-    <% end %>
-    <% if logged_in? %>
+  <header>
+    <ul>
+      <% if logged_in? %>
       <%= "#{current_user.name}さんはログインしています" %>
       <%= link_to "Profile", user_path(current_user.id) %>
       <%= link_to "Logout", session_path(current_user.id), method: :delete %>
-    <% else %>
+      <% else %>
       <%= "あなたは今ログインしていません" %>
       <%= link_to "Sign up", new_user_path %>
       <%= link_to "Login", new_session_path %>
+      <% end %>
+    </ul>
+  </header>
+  <body>
+    <% flash.each do |key, value| %>
+    <%= content_tag(:div, value, class: "#{key}") %>
     <% end %>
     <%= yield %>
+    <footer>
+      <p>フェイスブッククローン</p>
+      <p>© 2020 5/20 ~ 5/25 ５月期小野作成</p>
+    </footer>
   </body>
+</div>
 </html>
