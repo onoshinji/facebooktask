@@ -1,7 +1,28 @@
+
+html {
+  position:relative;
+  min-height: 100%;
+}
 header{
   background-color: #428dda;
-  height: 5%;
+  height: 3rem;
 }
 body{
   background-color: #e8e7f2
+
+}
+footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+  background-color: #3f90be;
+}
+.header_text{
+  font-size: 2rem;
+  color:#e5e6d9;
+}
+#form{
+  margin-bottom: 30px;
 }

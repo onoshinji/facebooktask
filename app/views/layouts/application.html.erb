@@ -8,11 +8,13 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   </head>
   <header>
-    <ul>
+    <div class = "text-right header_text">
       <% if logged_in? %>
-      <%= "#{current_user.name}さんはログインしています" %>
+      <span class="fa fa-facebook-square"</span>
+      <%= "#{current_user.name}" %>
       <%= link_to "Profile", user_path(current_user.id) %>
       <%= link_to "Logout", session_path(current_user.id), method: :delete %>
       <% else %>
@@ -20,7 +22,11 @@
       <%= link_to "Sign up", new_user_path %>
       <%= link_to "Login", new_session_path %>
       <% end %>
-    </ul>
+      <a ><i class="fa fa-home fa-fw"></i>&nbsp; Home</a>
+      <a><i class="fa fa-book fa-fw"></i>&nbsp; Library</a>
+      <a ><i class="fa fa-pencil fa-fw"></i>&nbsp; Applications</a>
+      <a><i class="fa fa-cog fa-fw"></i>&nbsp; Settings</a>
+    </div>
   </header>
   <body>
     <% flash.each do |key, value| %>
